@@ -1,0 +1,25 @@
+body {
+  max-width: 1335px;
+  margin: 0 auto;
+}
+
+.grid-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.square {
+  width: 83px;
+  height: 20px;
+  border: 1px solid;
+  flex-basis: 6%;
+  -ms-flex: auto;
+  position: relative;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.square:hover {
+  background-color: black;
+}
