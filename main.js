@@ -26,44 +26,60 @@ function fillRow(numberOfSquares) {
 buildRow(16);
 fillRow(16);
 
-//custom board size and clear
-let resetButton = document.querySelector("#reset");
-resetButton.addEventListener("click", function (event) {
-  let reqRows = prompt("How many rows?");
-  let reqSquares = prompt("How many columns?");
-  document.querySelector("#gameBoard").innerHTML = "";
-  buildRow(reqRows);
-  fillRow(reqSquares);
-});
-
 //BEGIN COLORIZATION MODULE
 //selects all squares on document
 let squares = document.querySelectorAll(".square");
 
 // Makes each square add the hover class which makes BG black
-squares.forEach((square) => {
-  square.addEventListener("mouseover", function (event) {
-    event.target.classList.add("hover");
+function addHover() {
+  squares.forEach((square) => {
+    square.addEventListener("mouseover", function (event) {
+      event.target.classList.add("hover");
+    });
   });
-});
+}
 
 //sets random background color
-squares.forEach((square) => {
-  square.addEventListener("mouseenter", function (event) {
-    let possibleColors = ["red", "blue", "green", "yellow"];
-    let randomColor =
-      possibleColors[Math.floor(Math.random() * possibleColors.length)];
-    event.target.style.backgroundColor = randomColor;
+function randomBackground() {
+  squares.forEach((square) => {
+    square.addEventListener("mouseenter", function (event) {
+      let possibleColors = ["red", "blue", "green", "yellow"];
+      let randomColor =
+        possibleColors[Math.floor(Math.random() * possibleColors.length)];
+      event.target.style.backgroundColor = randomColor;
+    });
   });
-});
+}
 
 // increments the opactity by .1 each time a mouse over event fires
-squares.forEach((square) => {
-  square.addEventListener("mouseover", function (event) {
-    let currentOpacity = event.target.style.opacity;
-    console.log("Current Opactity is " + currentOpacity);
-    let targetOpacity = Number(currentOpacity) + 0.2;
-    console.log(targetOpacity);
-    event.target.style.opacity = targetOpacity;
+function brightenUp() {
+  squares.forEach((square) => {
+    square.addEventListener("mouseover", function (event) {
+      let currentOpacity = event.target.style.opacity;
+      console.log("Current Opactity is " + currentOpacity);
+      let targetOpacity = Number(currentOpacity) + 0.2;
+      console.log(targetOpacity);
+      event.target.style.opacity = targetOpacity;
+    });
   });
+}
+
+addHover();
+randomBackground();
+brightenUp();
+
+//custom board size and clear
+let resetButton = document.querySelector("#reset");
+resetButton.addEventListener("click", function (event) {
+  let reqRows = Number(prompt("How many rows?", "1-100"));
+  let reqSquares = Number(prompt("How many columns?", "1-100"));
+  if (Number.isInteger(reqRows) && Number.isInteger(reqSquares)) {
+    document.querySelector("#gameBoard").innerHTML = "";
+    buildRow(reqRows);
+    fillRow(reqSquares);
+    squares = document.querySelectorAll(".square");
+    addHover();
+    randomBackground();
+    brightenUp();
+  } else alert("Invalid entry, numbers only.");
 });

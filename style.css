@@ -1,5 +1,8 @@
-#gameboard {
+#gameBoard {
   max-width: 900px;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
   margin: auto;
   display: block;
 }
@@ -24,15 +27,14 @@ button#reset {
 
 .grid-row {
   display: flex;
-  flex-flow: row wrap;
+  flex: 1;
   justify-content: flex-start;
 }
 
 .square {
-  width: 83px;
-  height: 20px;
   border: 1px solid;
-  flex-basis: 6%;
+  flex-grow: 1;
+  flex-shrink: 1;
   -ms-flex: auto;
   position: relative;
   padding: 25px;
