@@ -43,10 +43,13 @@ function addHover() {
 function randomBackground() {
   squares.forEach((square) => {
     square.addEventListener("mouseenter", function (event) {
-      let possibleColors = ["red", "blue", "green", "yellow"];
-      let randomColor =
-        possibleColors[Math.floor(Math.random() * possibleColors.length)];
-      event.target.style.backgroundColor = randomColor;
+      if (event.target.classList.contains("greyscale")) {
+      } else {
+        let possibleColors = ["red", "blue", "green", "yellow"];
+        let randomColor =
+          possibleColors[Math.floor(Math.random() * possibleColors.length)];
+        event.target.style.backgroundColor = randomColor;
+      }
     });
   });
 }

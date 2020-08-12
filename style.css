@@ -1,7 +1,9 @@
 #gameBoard {
   width: 900px;
   height: 900px;
-  display: flex;
+  max-height: 900px;
+  max-width: 900px;
+  display: grid;
   flex-direction: column;
   margin: auto;
 }
@@ -18,11 +20,12 @@ h1 {
 
 nav {
   display: flex;
+  justify-content: center;
 }
 
 button {
   display: block;
-  margin: auto;
+  margin: 20px;
   margin-bottom: 30px;
   padding: 10px;
   width: 100px;
@@ -30,6 +33,7 @@ button {
 
 .greyscale {
   background-color: black;
+  opacity: 0.3;
 }
 
 button:hover {
@@ -48,7 +52,7 @@ button:hover {
   flex-grow: 1;
   flex-shrink: 1;
   position: relative;
-  padding: 25px;
+  padding: auto;
   box-sizing: border-box;
 }
 
