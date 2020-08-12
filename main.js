@@ -28,7 +28,7 @@ fillRow(16);
 
 //BEGIN COLORIZATION MODULE
 //selects all squares on document
-let squares = document.querySelectorAll(".square");
+var squares = document.querySelectorAll(".square");
 
 // Makes each square add the hover class which makes BG black
 function addHover() {
@@ -68,9 +68,21 @@ addHover();
 randomBackground();
 brightenUp();
 
-//custom board size and clear
+//Clear and reset board
 let resetButton = document.querySelector("#reset");
 resetButton.addEventListener("click", function (event) {
+  document.querySelector("#gameBoard").innerHTML = "";
+  buildRow(16);
+  fillRow(16);
+  squares = document.querySelectorAll(".square");
+  addHover();
+  randomBackground();
+  brightenUp();
+});
+
+//custom board size
+let resizeButton = document.querySelector("#resize");
+resizeButton.addEventListener("click", function (event) {
   let reqRows = Number(prompt("How many rows?", "1-100"));
   let reqSquares = Number(prompt("How many columns?", "1-100"));
   if (Number.isInteger(reqRows) && Number.isInteger(reqSquares)) {
@@ -82,4 +94,13 @@ resetButton.addEventListener("click", function (event) {
     randomBackground();
     brightenUp();
   } else alert("Invalid entry, numbers only.");
+});
+
+//greyscale
+let greyButton = document.querySelector("#greyscale");
+greyButton.addEventListener("click", function (event) {
+  squares = document.querySelectorAll(".square");
+  squares.forEach((square) => {
+    square.classList.toggle("greyscale");
+  });
 });
